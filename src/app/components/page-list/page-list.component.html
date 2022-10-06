@@ -1,0 +1,27 @@
+<app-loading *ngIf="loading"></app-loading>
+<div class="pokemon-list" *ngIf="!loading">
+  <div
+    class="container"
+    *ngFor="let pokemon of pokemonList | slice: 0:indexShow"
+  >
+    <div class="pokemon-info">
+      <h1>{{ pokemon.name }}</h1>
+      <img
+        class="img-found"
+        (error)="updateUrl($event, pokemon)"
+        [src]="pokemon.image"
+        *ngIf="pokemon.image"
+      />
+      <img
+        class="img-not-found"
+        src="assets/img/interrogacao.png"
+        *ngIf="!pokemon.image"
+      />
+    </div>
+  </div>
+</div>
+<div class="container-btn" *ngIf="showButton && !loading">
+  <div>
+    <button (click)="showMore()">Mostar Mais</button>
+  </div>
+</div>
